@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Dofus data for your Discord server without Bots.">
+
+  <title>Dofusdude for Discord</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/css/bootstrap.min.css"
+    integrity="sha512-Ez0cGzNzHR1tYAv56860NLspgUGuQw16GiOOp/I2LuTmpSK9xDXlgJz3XN4cnpXWDmkNBKXR/VDMTCnAaEooxA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/js/bootstrap.min.js"
+    integrity="sha512-EKWWs1ZcA2ZY9lbLISPz8aGR2+L7JVYqBAYTq5AXgBkSjRSuQEGqWx8R1zAX16KdXPaCjOCaKE8MCpU0wcHlHA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+  <link href="/assets/styles.css" rel="stylesheet">
+  <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+</head>
+
+<body>
+
+  <div class="header-landing">
+
+    <div class="col-lg-12 text-center">
+      <h1>Dofusdude for Discord</h1>
+      <p class="lead">Almanax | RSS | Twitter</p>
+      <p class="lead">fast and powerful Ankama feeds for your server</p>
+    </div>
+  </div>
+  <div class="container-more container mt-5 button-wrap">
+  </div>
+  </div>
+
+  <div class="container">
+    <h3 class="mt-5">Copy a Webhook URL</h3>
+    <div class="workflow-video-wrap">
+      <video id="workflow" autoplay loop muted>
+        <source src="assets/discord-webhook-flow.mp4" type="video/mp4">
+        Your browser does not support the video.
+      </video>
+    </div>
+
+    <p><small class="form-text text-muted">WARNING: Do not share the copied URL with any untrusted third parties. It
+        allows to post to the channel. This service ensures that, after creation, the URL won't be shown to the
+        outside.</small>
+    </p>
+
+    <div class="form-group mt-4">
+      <label for="urlField" class="required">Discord Webhook URL</label>
+      <input type="text" class="form-control col-md-8 col-sm-12" id="urlField" placeholder="paste here..." required>
+      <p id="url-ok" class="mt-3 text-success d-none">
+        OK
+      </p>
+      <p id="url-not-ok" class="mt-3 text-warning d-none">
+        Not a valid Discord Webhook URL.
+      </p>
+    </div>
+
+    <h3 class="mt-5">Select feed</h3>
+    <p><small class="form-text text-muted">Tip for Desktop: when the label is plural, you can hold Ctrl or Cmd to select
+        multiple options.</small></p>
+
+    <nav class="mt-3">
+      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <button class="nav-link active" id="nav-almanax-tab" data-bs-toggle="tab" data-bs-target="#nav-almanax"
+          type="button" role="tab" aria-controls="nav-almanax" aria-selected="true">Daily Almanax</button>
+        <button class="nav-link" id="nav-rss-tab" data-bs-toggle="tab" data-bs-target="#nav-rss" type="button"
+          role="tab" aria-controls="nav-rss" aria-selected="false">RSS</button>
+        <button class="nav-link" id="nav-twitter-tab" data-bs-toggle="tab" data-bs-target="#nav-twitter" type="button"
+          role="tab" aria-controls="nav-twitter" aria-selected="false">Twitter</button>
+      </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="nav-almanax" role="tabpanel" aria-labelledby="nav-almanax-tab">
+        <form id="almanaxForm">
+
+          <div class="form-group mt-4">
+            <label for="almGameSelect" class="required">Game</label>
+            <select class="form-control col-md-4 col-sm-12" id="almGameSelect" aria-describedby="gameSelectDesc"
+              placeholder="" required disabled>
+              <option value="dofus2">Dofus 2</option>
+            </select>
+            <small id="almGameSelectDesc" class="form-text text-muted">Currently only supporting Dofus 2.</small>
+          </div>
+
+          <div class="form-group mt-4">
+            <label for="langSelect" class="required">Languages</label>
+            <select class="form-control col-md-4 col-sm-12" id="langSelect" placeholder="" required multiple size="5">
+              <option value="en" selected="true">English</option>
+              <option value="fr">French</option>
+              <option value="it">Italian</option>
+              <option value="es">Spanish</option>
+              <option value="de">German</option>
+            </select>
+          </div>
+
+          <div class="form-group mt-4">
+            <label for="tzSelect">Timezone</label>
+            <select class="form-control col-md-4 col-sm-12" id="tzSelect" aria-describedby="tzSelectDesc" placeholder=""
+              required>
+              <option>Europe/Andorra</option>
+              <option>Asia/Dubai</option>
+              <option>Asia/Kabul</option>
+              <option>Europe/Tirane</option>
+              <option>Asia/Yerevan</option>
+              <option>Antarctica/Casey</option>
+              <option>Antarctica/Davis</option>
+              <option>Antarctica/DumontDUrville</option>
+              <option>Antarctica/Mawson</option>
+              <option>Antarctica/Palmer</option>
+              <option>Antarctica/Rothera</option>
+              <option>Antarctica/Syowa</option>
+              <option>Antarctica/Troll</option>
+              <option>Antarctica/Vostok</option>
+              <option>America/Argentina/Buenos_Aires</option>
+              <option>America/Argentina/Cordoba</option>
+              <option>America/Argentina/Salta</option>
+              <option>America/Argentina/Jujuy</option>
+              <option>America/Argentina/Tucuman</option>
+              <option>America/Argentina/Catamarca</option>
+              <option>America/Argentina/La_Rioja</option>
+              <option>America/Argentina/San_Juan</option>
+              <option>America/Argentina/Mendoza</option>
+              <option>America/Argentina/San_Luis</option>
+              <option>America/Argentina/Rio_Gallegos</option>
+              <option>America/Argentina/Ushuaia</option>
+              <option>Pacific/Pago_Pago</option>
+              <option>Europe/Vienna</option>
+              <option>Australia/Lord_Howe</option>
+              <option>Antarctica/Macquarie</option>
+              <option>Australia/Hobart</option>
+              <option>Australia/Currie</option>
+              <option>Australia/Melbourne</option>
+              <option>Australia/Sydney</option>
+              <option>Australia/Broken_Hill</option>
+              <option>Australia/Brisbane</option>
+              <option>Australia/Lindeman</option>
+              <option>Australia/Adelaide</option>
+              <option>Australia/Darwin</option>
+              <option>Australia/Perth</option>
+              <option>Australia/Eucla</option>
+              <option>Asia/Baku</option>
+              <option>America/Barbados</option>
+              <option>Asia/Dhaka</option>
+              <option>Europe/Brussels</option>
+              <option>Europe/Sofia</option>
+              <option>Atlantic/Bermuda</option>
+              <option>Asia/Brunei</option>
+              <option>America/La_Paz</option>
+              <option>America/Noronha</option>
+              <option>America/Belem</option>
+              <option>America/Fortaleza</option>
+              <option>America/Recife</option>
+              <option>America/Araguaina</option>
+              <option>America/Maceio</option>
+              <option>America/Bahia</option>
+              <option>America/Sao_Paulo</option>
+              <option>America/Campo_Grande</option>
+              <option>America/Cuiaba</option>
+              <option>America/Santarem</option>
+              <option>America/Porto_Velho</option>
+              <option>America/Boa_Vista</option>
+              <option>America/Manaus</option>
+              <option>America/Eirunepe</option>
+              <option>America/Rio_Branco</option>
+              <option>America/Nassau</option>
+              <option>Asia/Thimphu</option>
+              <option>Europe/Minsk</option>
+              <option>America/Belize</option>
+              <option>America/St_Johns</option>
+              <option>America/Halifax</option>
+              <option>America/Glace_Bay</option>
+              <option>America/Moncton</option>
+              <option>America/Goose_Bay</option>
+              <option>America/Blanc-Sablon</option>
+              <option>America/Toronto</option>
+              <option>America/Nipigon</option>
+              <option>America/Thunder_Bay</option>
+              <option>America/Iqaluit</option>
+              <option>America/Pangnirtung</option>
+              <option>America/Atikokan</option>
+              <option>America/Winnipeg</option>
+              <option>America/Rainy_River</option>
+              <option>America/Resolute</option>
+              <option>America/Rankin_Inlet</option>
+              <option>America/Regina</option>
+              <option>America/Swift_Current</option>
+              <option>America/Edmonton</option>
+              <option>America/Cambridge_Bay</option>
+              <option>America/Yellowknife</option>
+              <option>America/Inuvik</option>
+              <option>America/Creston</option>
+              <option>America/Dawson_Creek</option>
+              <option>America/Fort_Nelson</option>
+              <option>America/Vancouver</option>
+              <option>America/Whitehorse</option>
+              <option>America/Dawson</option>
+              <option>Indian/Cocos</option>
+              <option>Europe/Zurich</option>
+              <option>Africa/Abidjan</option>
+              <option>Pacific/Rarotonga</option>
+              <option>America/Santiago</option>
+              <option>America/Punta_Arenas</option>
+              <option>Pacific/Easter</option>
+              <option>Asia/Shanghai</option>
+              <option>Asia/Urumqi</option>
+              <option>America/Bogota</option>
+              <option>America/Costa_Rica</option>
+              <option>America/Havana</option>
+              <option>Atlantic/Cape_Verde</option>
+              <option>America/Curacao</option>
+              <option>Indian/Christmas</option>
+              <option>Asia/Nicosia</option>
+              <option>Asia/Famagusta</option>
+              <option>Europe/Prague</option>
+              <option>Europe/Berlin</option>
+              <option>Europe/Copenhagen</option>
+              <option>America/Santo_Domingo</option>
+              <option>Africa/Algiers</option>
+              <option>America/Guayaquil</option>
+              <option>Pacific/Galapagos</option>
+              <option>Europe/Tallinn</option>
+              <option>Africa/Cairo</option>
+              <option>Africa/El_Aaiun</option>
+              <option>Europe/Madrid</option>
+              <option>Africa/Ceuta</option>
+              <option>Atlantic/Canary</option>
+              <option>Europe/Helsinki</option>
+              <option>Pacific/Fiji</option>
+              <option>Atlantic/Stanley</option>
+              <option>Pacific/Chuuk</option>
+              <option>Pacific/Pohnpei</option>
+              <option>Pacific/Kosrae</option>
+              <option>Atlantic/Faroe</option>
+              <option selected="true">Europe/Paris</option>
+              <option>Europe/London</option>
+              <option>Asia/Tbilisi</option>
+              <option>America/Cayenne</option>
+              <option>Africa/Accra</option>
+              <option>Europe/Gibraltar</option>
+              <option>America/Godthab</option>
+              <option>America/Danmarkshavn</option>
+              <option>America/Scoresbysund</option>
+              <option>America/Thule</option>
+              <option>Europe/Athens</option>
+              <option>Atlantic/South_Georgia</option>
+              <option>America/Guatemala</option>
+              <option>Pacific/Guam</option>
+              <option>Africa/Bissau</option>
+              <option>America/Guyana</option>
+              <option>Asia/Hong_Kong</option>
+              <option>America/Tegucigalpa</option>
+              <option>America/Port-au-Prince</option>
+              <option>Europe/Budapest</option>
+              <option>Asia/Jakarta</option>
+              <option>Asia/Pontianak</option>
+              <option>Asia/Makassar</option>
+              <option>Asia/Jayapura</option>
+              <option>Europe/Dublin</option>
+              <option>Asia/Jerusalem</option>
+              <option>Asia/Kolkata</option>
+              <option>Indian/Chagos</option>
+              <option>Asia/Baghdad</option>
+              <option>Asia/Tehran</option>
+              <option>Atlantic/Reykjavik</option>
+              <option>Europe/Rome</option>
+              <option>America/Jamaica</option>
+              <option>Asia/Amman</option>
+              <option>Asia/Tokyo</option>
+              <option>Africa/Nairobi</option>
+              <option>Asia/Bishkek</option>
+              <option>Pacific/Tarawa</option>
+              <option>Pacific/Enderbury</option>
+              <option>Pacific/Kiritimati</option>
+              <option>Asia/Pyongyang</option>
+              <option>Asia/Seoul</option>
+              <option>Asia/Almaty</option>
+              <option>Asia/Qyzylorda</option>
+              <option>Asia/Qostanay</option>
+              <option>Asia/Aqtobe</option>
+              <option>Asia/Aqtau</option>
+              <option>Asia/Atyrau</option>
+              <option>Asia/Oral</option>
+              <option>Asia/Beirut</option>
+              <option>Asia/Colombo</option>
+              <option>Africa/Monrovia</option>
+              <option>Europe/Vilnius</option>
+              <option>Europe/Luxembourg</option>
+              <option>Europe/Riga</option>
+              <option>Africa/Tripoli</option>
+              <option>Africa/Casablanca</option>
+              <option>Europe/Monaco</option>
+              <option>Europe/Chisinau</option>
+              <option>Pacific/Majuro</option>
+              <option>Pacific/Kwajalein</option>
+              <option>Asia/Yangon</option>
+              <option>Asia/Ulaanbaatar</option>
+              <option>Asia/Hovd</option>
+              <option>Asia/Choibalsan</option>
+              <option>Asia/Macau</option>
+              <option>America/Martinique</option>
+              <option>Europe/Malta</option>
+              <option>Indian/Mauritius</option>
+              <option>Indian/Maldives</option>
+              <option>America/Mexico_City</option>
+              <option>America/Cancun</option>
+              <option>America/Merida</option>
+              <option>America/Monterrey</option>
+              <option>America/Matamoros</option>
+              <option>America/Mazatlan</option>
+              <option>America/Chihuahua</option>
+              <option>America/Ojinaga</option>
+              <option>America/Hermosillo</option>
+              <option>America/Tijuana</option>
+              <option>America/Bahia_Banderas</option>
+              <option>Asia/Kuala_Lumpur</option>
+              <option>Asia/Kuching</option>
+              <option>Africa/Maputo</option>
+              <option>Africa/Windhoek</option>
+              <option>Pacific/Noumea</option>
+              <option>Pacific/Norfolk</option>
+              <option>Africa/Lagos</option>
+              <option>America/Managua</option>
+              <option>Europe/Amsterdam</option>
+              <option>Europe/Oslo</option>
+              <option>Asia/Kathmandu</option>
+              <option>Pacific/Nauru</option>
+              <option>Pacific/Niue</option>
+              <option>Pacific/Auckland</option>
+              <option>Pacific/Chatham</option>
+              <option>America/Panama</option>
+              <option>America/Lima</option>
+              <option>Pacific/Tahiti</option>
+              <option>Pacific/Marquesas</option>
+              <option>Pacific/Gambier</option>
+              <option>Pacific/Port_Moresby</option>
+              <option>Pacific/Bougainville</option>
+              <option>Asia/Manila</option>
+              <option>Asia/Karachi</option>
+              <option>Europe/Warsaw</option>
+              <option>America/Miquelon</option>
+              <option>Pacific/Pitcairn</option>
+              <option>America/Puerto_Rico</option>
+              <option>Asia/Gaza</option>
+              <option>Asia/Hebron</option>
+              <option>Europe/Lisbon</option>
+              <option>Atlantic/Madeira</option>
+              <option>Atlantic/Azores</option>
+              <option>Pacific/Palau</option>
+              <option>America/Asuncion</option>
+              <option>Asia/Qatar</option>
+              <option>Indian/Reunion</option>
+              <option>Europe/Bucharest</option>
+              <option>Europe/Belgrade</option>
+              <option>Europe/Kaliningrad</option>
+              <option>Europe/Moscow</option>
+              <option>Europe/Simferopol</option>
+              <option>Europe/Kirov</option>
+              <option>Europe/Astrakhan</option>
+              <option>Europe/Volgograd</option>
+              <option>Europe/Saratov</option>
+              <option>Europe/Ulyanovsk</option>
+              <option>Europe/Samara</option>
+              <option>Asia/Yekaterinburg</option>
+              <option>Asia/Omsk</option>
+              <option>Asia/Novosibirsk</option>
+              <option>Asia/Barnaul</option>
+              <option>Asia/Tomsk</option>
+              <option>Asia/Novokuznetsk</option>
+              <option>Asia/Krasnoyarsk</option>
+              <option>Asia/Irkutsk</option>
+              <option>Asia/Chita</option>
+              <option>Asia/Yakutsk</option>
+              <option>Asia/Khandyga</option>
+              <option>Asia/Vladivostok</option>
+              <option>Asia/Ust-Nera</option>
+              <option>Asia/Magadan</option>
+              <option>Asia/Sakhalin</option>
+              <option>Asia/Srednekolymsk</option>
+              <option>Asia/Kamchatka</option>
+              <option>Asia/Anadyr</option>
+              <option>Asia/Riyadh</option>
+              <option>Pacific/Guadalcanal</option>
+              <option>Indian/Mahe</option>
+              <option>Africa/Khartoum</option>
+              <option>Europe/Stockholm</option>
+              <option>Asia/Singapore</option>
+              <option>America/Paramaribo</option>
+              <option>Africa/Juba</option>
+              <option>Africa/Sao_Tome</option>
+              <option>America/El_Salvador</option>
+              <option>Asia/Damascus</option>
+              <option>America/Grand_Turk</option>
+              <option>Africa/Ndjamena</option>
+              <option>Indian/Kerguelen</option>
+              <option>Asia/Bangkok</option>
+              <option>Asia/Dushanbe</option>
+              <option>Pacific/Fakaofo</option>
+              <option>Asia/Dili</option>
+              <option>Asia/Ashgabat</option>
+              <option>Africa/Tunis</option>
+              <option>Pacific/Tongatapu</option>
+              <option>Europe/Istanbul</option>
+              <option>America/Port_of_Spain</option>
+              <option>Pacific/Funafuti</option>
+              <option>Asia/Taipei</option>
+              <option>Europe/Kiev</option>
+              <option>Europe/Uzhgorod</option>
+              <option>Europe/Zaporozhye</option>
+              <option>Pacific/Wake</option>
+              <option>America/New_York</option>
+              <option>America/Detroit</option>
+              <option>America/Kentucky/Louisville</option>
+              <option>America/Kentucky/Monticello</option>
+              <option>America/Indiana/Indianapolis</option>
+              <option>America/Indiana/Vincennes</option>
+              <option>America/Indiana/Winamac</option>
+              <option>America/Indiana/Marengo</option>
+              <option>America/Indiana/Petersburg</option>
+              <option>America/Indiana/Vevay</option>
+              <option>America/Chicago</option>
+              <option>America/Indiana/Tell_City</option>
+              <option>America/Indiana/Knox</option>
+              <option>America/Menominee</option>
+              <option>America/North_Dakota/Center</option>
+              <option>America/North_Dakota/New_Salem</option>
+              <option>America/North_Dakota/Beulah</option>
+              <option>America/Denver</option>
+              <option>America/Boise</option>
+              <option>America/Phoenix</option>
+              <option>America/Los_Angeles</option>
+              <option>America/Anchorage</option>
+              <option>America/Juneau</option>
+              <option>America/Sitka</option>
+              <option>America/Metlakatla</option>
+              <option>America/Yakutat</option>
+              <option>America/Nome</option>
+              <option>America/Adak</option>
+              <option>Pacific/Honolulu</option>
+              <option>America/Montevideo</option>
+              <option>Asia/Samarkand</option>
+              <option>Asia/Tashkent</option>
+              <option>America/Caracas</option>
+              <option>Asia/Ho_Chi_Minh</option>
+              <option>Pacific/Efate</option>
+              <option>Pacific/Wallis</option>
+              <option>Pacific/Apia</option>
+              <option>Africa/Johannesburg</option>
+            </select>
+            <small id="tzSelectDesc" class="form-text text-muted">Timezone of your community to determine
+              midnight.</small>
+          </div>
+
+          <div class="form-group mt-4">
+            <label for="tzOffset">Hour</label>
+            <input type="number" step="1" min="0" max="23" class="form-control col-md-1" id="tzOffset"
+              aria-describedby="tzOffsetDesc" value="0" required>
+            <small id="tzOffsetDesc" class="form-text text-muted">Hours added to midnight at the
+              selected timezone. 8 = 8:00 in the morning.</small>
+          </div>
+
+          <div class="form-group mt-4">
+            <label for="almBonusBlacklist">Bonus Blacklist</label>
+            <select class="form-control col-md-4 col-sm-12" id="almBonusBlacklist" placeholder="" multiple size="7">
+            </select>
+            <small id="almBonusBlacklistDesc" class="form-text text-muted">Skip the post of the day when this bonuses
+              comes up.</small>
+          </div>
+
+          <div class="form-group mt-4">
+            <label for="almBonusWhitelist">Bonus Whitelist</label>
+            <select class="form-control col-md-4 col-sm-12" id="almBonusWhitelist" placeholder="" multiple size="7">
+            </select>
+            <small id="almBonusWhitelistDesc" class="form-text text-muted">Only post when this bonuses comes
+              up.</small>
+          </div>
+
+          <div class="mt-5">
+            <!-- checkbox to enable mentions -->
+            <h4>
+              <input type="checkbox" class="form-check-input" id="almEnableMentions"> Mentions
+            </h4>
+            <p>
+              @-Mention a user or role when a specific bonus is posted.
+            </p>
+            <div id="almMentions" class="d-none">
+              <p>
+                You need to enable developer mode in the User Settings (bottom left next to mute/deafen) -
+                Advanced.
+              </p>
+              <div class="workflow-video-wrap">
+                <video id="copy-id-workflow" autoplay loop muted>
+                  <source src="assets/discord-copy-id-flow.mp4" type="video/mp4">
+                  Your browser does not support the video.
+                </video>
+              </div>
+
+              <div class="almMention mt-5" id="almMention-1">
+                <div class="form-group mt-3">
+                  <label for="almMentionBonusSelect-1">Bonus</label>
+                  <select class="form-control col-md-4 col-sm-12 almBonusId" id="almMentionBonusSelect-1"
+                    placeholder="">
+                  </select>
+                </div>
+
+                <div class="form-group mt-2">
+                  <label for="almMentionID-1">ID</label>
+                  <input type="text" class="form-control col-md-4 col-sm-12 mt-2 almMentionId" id="almMentionID-1"
+                    placeholder="paste here...">
+                </div>
+
+                <div class="form-group mt-2">
+                  <label for="almMentionIsRole-1">Type</label>
+                  <select class="form-control col-md-4 col-sm-12 almIsRole" id="almMentionIsRole-1" placeholder="">
+                    <option value="user">
+                      User
+                    </option>
+                    <option value="role">
+                      Role
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div id="almMentionController" class="d-none">
+              <button type="button" class="btn btn-primary mt-4" id="almAddMention">Add Mention</button>
+              <button type="button" class="btn btn-danger mt-4" id="almDeleteMention">Delete Mention</button>
+            </div>
+          </div>
+
+          <div class="form-group mt-5">
+            <input class="form-check-input" type="checkbox" value="" id="almUseIsoDate">
+            <label for="almUseIsoDate">ISO 8601 date format</label>
+            <small id="almUseIsoDateDesc" class="form-text text-muted">YYYY-MM-DD<br>If not selected, it will use
+              common local time formats and weekday translations.</small>
+          </div>
+
+          <button id="almRegisterBtn" type="submit" class="btn btn-outline-light mt-5 col-sm-12 col-md-3"
+            style="color:black;border-color: black;">Register Almanax</button>
+          <p id="alm-register-ok" class="mt-3 text-success d-none">
+            Channel registered for Almanax.
+          </p>
+          <p id="alm-already-registered" class="mt-3 text-warning d-none">
+            Channel already registered.
+          </p>
+          <p id="alm-not-exist" class="mt-3 text-warning d-none">
+            URL does not exist. Make sure to follow the steps.
+          </p>
+          <p id="alm-register-error" class="mt-3 text-danger d-none">
+            Error with the registration. Please contact me on <a href="https://discord.gg/3EtHskZD8h">Discord</a> to get
+            it fixed.
+          </p>
+          <p id="alm-register-rate-limit" class="mt-3 text-danger d-none">
+            Too many requests, don't push it dude(ette)!
+          </p>
+        </form>
+      </div>
+      <div class="tab-pane fade" id="nav-rss" role="tabpanel" aria-labelledby="nav-rss-tab">
+        <form id="rssForm">
+
+          <div class="form-group mt-4">
+            <label for="RssGameSelect" class="required">Game</label>
+            <select class="form-control col-md-4 col-sm-12" id="RssGameSelect" aria-describedby="RssGameSelectDesc"
+              placeholder="" required disabled>
+              <option value="dofus2">Dofus 2</option>
+            </select>
+            <small id="RssGameSelectDesc" class="form-text text-muted">Currently only supporting Dofus 2.</small>
+          </div>
+
+          <div class="form-group mt-4">
+            <label for="rssLangSelect" class="required">Languages</label>
+            <select class="form-control col-md-4 col-sm-12" id="rssLangSelect" placeholder="" required multiple
+              size="4">
+              <option value="en" selected="true">English</option>
+              <option value="fr">French</option>
+              <option value="es">Spanish</option>
+              <option value="pt">Portuguese</option>
+            </select>
+          </div>
+
+          <div class="form-group mt-4">
+            <label for="rssFeedSelect" class="required">Feeds</label>
+            <select class="form-control col-md-4 col-sm-12" id="rssFeedSelect" placeholder="" required multiple
+              size="3">
+              <option value="news" selected="true">News</option>
+              <option value="changelog">Changelog</option>
+              <option value="devblog">Devblog</option>
+            </select>
+          </div>
+
+          <div class="form-group mt-4">
+            <label for="rssPreviewLength">Preview length</label>
+            <input type="number" step="1" min="0" max="4000" class="form-control col-md-1" id="rssPreviewLength"
+              aria-describedby="rssPreviewLengthDesc" value="2000" required>
+            <small id="rssPreviewLengthDesc" class="form-text text-muted">Length of characters. If a post exceeds it,
+              the rest will be replaced by '...'.</small>
+          </div>
+
+          <div class="form-group mt-4">
+            <label for="rssBlacklist">Blacklist</label>
+            <textarea class="form-control col-md-4 col-sm-12" id="rssBlacklist"
+              placeholder="multiple entries seperated by new line" rows="5"></textarea>
+            <small id="rssBlacklistDesc" class="form-text text-muted">Ignore news containing this words.</small>
+          </div>
+
+          <div class="form-group mt-4">
+            <label for="rssWhitelist">Whitelist</label>
+            <textarea class="form-control col-md-4 col-sm-12" id="rssWhitelist"
+              placeholder="multiple entries seperated by new line" rows="5"></textarea>
+            <small id="rssWhitelistDesc" class="form-text text-muted">Only post news containing this words.<br>Can be
+              combined with Blacklist. In that case the Whitelist always wins. <br>Example: the Blacklist wants some
+              news to be filtered out but the Whitelist wants it posted, the Whitelist wins.</small>
+          </div>
+
+          <button id="rssRegisterBtn" type="submit" class="btn btn-outline-light mt-5 col-sm-12 col-md-3"
+            style="color:black;border-color: black;">Register RSS</button>
+          <p id="rss-register-ok" class="mt-3 text-success d-none">
+            Channel registered for RSS Feed.
+          </p>
+          <p id="rss-already-registered" class="mt-3 text-warning d-none">
+            Channel already registered.
+          </p>
+          <p id="rss-not-exist" class="mt-3 text-warning d-none">
+            URL does not exist. Make sure to follow the steps.
+          </p>
+          <p id="rss-register-error" class="mt-3 text-danger d-none">
+            Error with the registration. Please contact me on <a href="https://discord.gg/3EtHskZD8h">Discord</a> to get
+            it fixed.
+          </p>
+          <p id="rss-register-rate-limit" class="mt-3 text-danger d-none">
+            Too many requests, don't push it dude(ette)!
+          </p>
+
+        </form>
+      </div>
+      <div class="tab-pane fade" id="nav-twitter" role="tabpanel" aria-labelledby="nav-twitter-tab">
+        <form id="twitterForm">
+
+          <div class="form-group mt-4">
+            <label for="twitterFeedSelect" class="required">Handles</label>
+            <select class="form-control col-md-4 col-sm-12" id="twitterFeedSelect" placeholder="" required multiple
+              size="5">
+              <option value="DOFUS_EN">DOFUS_EN</option>
+              <option value="ES_DOFUS">ES_DOFUS</option>
+              <option value="DOFUSfr">DOFUSfr</option>
+              <option value="DOFUS_PTBR">DOFUS_PTBR</option>
+              <option value="DOFUSTouch_EN">DOFUSTouch_EN</option>
+              <option value="DOFUSTouch">DOFUSTouch</option>
+              <option value="DOFUSTouch_ES">DOFUSTouch_ES</option>
+              <option value="AnkamaGames">AnkamaGames</option>
+              <option value="KTA_En">KTA_En</option>
+              <option value="KTA_fr">KTA_fr</option>
+            </select>
+          </div>
+
+          <div class="form-group mt-4">
+            <label for="twitterPreviewLength">Preview length</label>
+            <input type="number" step="1" min="0" max="280" class="form-control col-md-1" id="twitterPreviewLength"
+              aria-describedby="twitterPreviewLengthDesc" value="280" required>
+            <small id="twitterPreviewLengthDesc" class="form-text text-muted">Length of characters. If a tweet exceeds
+              it, the rest will be replaced by '...'.</small>
+          </div>
+
+          <div class="form-group mt-4">
+            <label for="twitterBlacklist">Blacklist</label>
+            <textarea class="form-control col-md-4 col-sm-12" id="twitterBlacklist"
+              placeholder="multiple entries seperated by new line" rows="5"></textarea>
+            <small id="twitterBlacklistDesc" class="form-text text-muted">Ignore Tweets containing this words.</small>
+          </div>
+
+          <div class="form-group mt-4">
+            <label for="twitterWhitelist">Whitelist</label>
+            <textarea class="form-control col-md-4 col-sm-12" id="twitterWhitelist"
+              placeholder="multiple entries seperated by new line" rows="5"></textarea>
+            <small id="twitterWhitelistDesc" class="form-text text-muted">Only post Tweets containing this words.<br>Can
+              be combined with Blacklist. The Whitelist always wins. <br>Example: the Blacklist wants a Tweet to be
+              filtered out but the Whitelist wants it
+              posted, the Whitelist wins and it will get posted.</small>
+          </div>
+
+          <button id="twitterRegisterBtn" type="submit" class="btn btn-outline-light mt-5 col-sm-12 col-md-3"
+            style="color:black;border-color: black;">Register Twitter</button>
+          <p id="twitter-register-ok" class="mt-3 text-success d-none">
+            Channel registered for Twitter Feed.
+          </p>
+          <p id="twitter-already-registered" class="mt-3 text-warning d-none">
+            Channel already registered.
+          </p>
+          <p id="twitter-not-exist" class="mt-3 text-warning d-none">
+            URL does not exist. Make sure to follow the steps.
+          </p>
+          <p id="twitter-register-error" class="mt-3 text-danger d-none">
+            Error with the registration. Please contact me on <a href="https://discord.gg/3EtHskZD8h">Discord</a> to get
+            it fixed.
+          </p>
+          <p id="twitter-register-rate-limit" class="mt-3 text-danger d-none">
+            Too many requests, don't push it dude(ette)!
+          </p>
+
+        </form>
+      </div>
+    </div>
+
+    <h2 class="mt-5">FAQ</h2>
+    <h3 class="mt-5">How do I unregister/delete?</h3>
+    <p class="mt-3">
+      Just delete it in Discord: Channel Settings - Integrations - [Your Webhook] - Delete Webhook.
+    </p>
+
+    <h3 class="mt-5">Can I change an already registered Webhook?</h3>
+    <p class="mt-3">
+      Not in the Webinterface. You have to delete the Webhook and register it again. API Users can use the PUT endpoint
+      with the generated ID.
+    </p>
+
+    <h3 class="mt-5">What is a Webhook? A Bot?</h3>
+    <p class="mt-3">
+      No. A Bot reacts to commands in the chat, so it needs to be connected to your server all the time. That is why it
+      looks like a member of your server. This site uses Webhooks. The URL is basically a key allowing the service
+      to post to your selected channel. It can not read messages or do anything on the server at all except post stuff
+      (nice for security).
+    </p>
+    <p class="mt-3">
+      So Webhooks are perfect for feeds. But they can not react to commands like <em>!alm</em> and you need to create a
+      new one for each
+      channel you want to use. For commands you need a Bot like <a
+        href="https://github.com/Kaysoro/KaellyBot">KaellyBot</a>.
+    </p>
+
+    <h3 class="mt-5">So with a Bot I get more?</h3>
+    <p class="mt-3">
+      Let's make it easy: Need commands? Use a Bot. Need a feed? Use a Webhook. Need both? Use both.
+    </p>
+    <p class="mt-3">
+      Maybe your Bot already uses this service. In that case just use the Bot - and tell me where to find it
+      so I can link it to other people.
+    </p>
+
+    <h3 class="mt-5">[Devs] Can I integrate this service?</h3>
+    <p class="mt-3">
+      Absolutely, this site is just a client. You can probably develop a much better frontend or integrate the used <a
+        href="https://docs.dofusdu.de">API</a> in your Bot or App. For example: This site ignores managing existing
+      Webhooks completely - for simplicity.
+    </p>
+
+  </div>
+
+
+
+  <div class="container">
+
+    <footer class="pt-4 my-md-5 pt-md-5 border-top">
+
+
+      <div class="row">
+        <div class="col-md-4">
+          <img class="mb-2" src="assets/steado_logo.png" alt="" width="35" height="auto">
+          <small class="d-block mb-3 text-muted">© 2022</small>
+        </div>
+
+        <div class="col-md-4">
+
+        </div>
+        <div class="col-md-4">
+          <ul class="list-unstyled text-small linklist">
+            <li><a class="text-muted" href="https://discord.gg/3EtHskZD8h">My Discord</a></li>
+            <li><a class="text-muted" href="https://docs.dofusdu.de/">API</a></li>
+            <li><a class="text-muted" href="https://github.com/dofusdude/ankama-discord-hooks">Get the Code</a></li>
+            <li><a class="text-muted" href="mailto:stelzo@steado.de">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+
+  <script>
+    document.getElementById('almEnableMentions').checked = false;
+
+    function toggleMentions() {
+      document.getElementById('almMentions').classList.toggle('d-none');
+      document.getElementById('almMentionController').classList.toggle('d-none');
+    }
+
+    document.getElementById('almEnableMentions').addEventListener('click', function () {
+      toggleMentions();
+    });
+
+    fetch("https://api.dofusdu.de/dofus2/meta/en/almanax/bonuses").then(response => response.json()).then(data => {
+      for (let i = 0; i < data.length; i++) {
+        const bonus = data[i];
+        const bonusId = bonus.id;
+        const bonusName = bonus.name;
+
+        let bonusElement = document.createElement('option');
+        bonusElement.value = bonusId;
+        bonusElement.innerText = bonusName;
+        document.getElementById('almBonusBlacklist').appendChild(bonusElement.cloneNode(true));
+        document.getElementById('almBonusWhitelist').appendChild(bonusElement.cloneNode(true));
+        document.getElementById('almMentionBonusSelect-1').appendChild(bonusElement.cloneNode(true));
+      }
+    });
+
+    document.getElementById('urlField').addEventListener('change', function () {
+      fetch(document.getElementById('urlField').value).then(response => {
+        if (response.status === 200) {
+          document.getElementById('url-ok').classList.remove('d-none');
+          document.getElementById('url-not-ok').classList.add('d-none');
+        } else {
+          document.getElementById('url-ok').classList.add('d-none');
+          document.getElementById('url-not-ok').classList.remove('d-none');
+        }
+      }).catch(error => {
+        document.getElementById('url-ok').classList.add('d-none');
+        document.getElementById('url-not-ok').classList.remove('d-none');
+      });
+    })
+
+    document.getElementById("almAddMention").addEventListener("click", function () {
+      var lastMention = document.getElementsByClassName("almMention")[document.getElementsByClassName("almMention").length - 1];
+      var newMention = lastMention.cloneNode(true);
+      var lastMentionID = lastMention.id;
+      var lastMentionNumber = lastMentionID.split("-")[1];
+      var newMentionNumber = parseInt(lastMentionNumber) + 1;
+      newMention.id = "almMention-" + newMentionNumber;
+      newMention.children[0].children[0].id = "almMentionBonusSelect-" + newMentionNumber;
+      newMention.children[0].children[0].name = "almMentionBonusSelect-" + newMentionNumber;
+      newMention.children[1].children[0].id = "almMentionID-" + newMentionNumber;
+      newMention.children[1].children[0].name = "almMentionID-" + newMentionNumber;
+      newMention.children[2].children[0].id = "almMentionIsRole-" + newMentionNumber;
+      newMention.children[2].children[0].name = "almMentionIsRole-" + newMentionNumber;
+      newMention.children[2].children[1].htmlFor = "almMentionIsRole-" + newMentionNumber;
+      document.getElementById("almMentions").appendChild(newMention);
+    });
+
+    document.getElementById("almDeleteMention").addEventListener("click", function () {
+      var lastMention = document.getElementsByClassName("almMention")[document.getElementsByClassName("almMention").length - 1];
+      var lastMentionID = lastMention.id;
+      var lastMentionNumber = lastMentionID.split("-")[1];
+      if (parseInt(lastMentionNumber) == 1) {
+        toggleMentions();
+        document.getElementById('almEnableMentions').checked = false;
+        return;
+      }
+
+      lastMention.remove();
+    });
+
+    function getSelectValues(select) {
+      var result = [];
+      var options = select && select.options;
+      var opt;
+
+      for (var i = 0, iLen = options.length; i < iLen; i++) {
+        opt = options[i];
+
+        if (opt.selected) {
+          result.push(opt.value || opt.text);
+        }
+      }
+      return result;
+    }
+
+    // Twitter
+    document.getElementById('twitterRegisterBtn').addEventListener('click', function (event) {
+
+      let webhookUrl = String(document.getElementById('urlField').value);
+      let feeds = getSelectValues(document.getElementById('twitterFeedSelect'));
+      if (feeds.length === 0) {
+        alert('Please select at least one feed.');
+        event.preventDefault();
+        event.stopPropagation();
+        return false;
+      }
+      let blacklistObj = String(document.getElementById('twitterBlacklist'));
+      let whitelistObj = String(document.getElementById('twitterWhitelist'));
+      let previewLength = parseInt(document.getElementById('twitterPreviewLength').value);
+      if (previewLength > 280) {
+        alert("Preview length must be less than 280 characters!");
+        event.preventDefault();
+        event.stopPropagation();
+        return false;
+      }
+
+      if (webhookUrl == "") {
+        alert("You need to specify a webhook url!");
+        event.preventDefault();
+        event.stopPropagation();
+        return false;
+      }
+
+      if (blacklistObj == "") {
+        blacklist = null;
+      } else {
+        blacklistObj = blacklistObj.replace(/\r\n/g, "\n");
+        blacklist = blacklistObj.split("\n");
+      }
+
+      if (whitelistObj == "") {
+        whitelist = null;
+      } else {
+        whitelistObj = whitelistObj.replace(/\r\n/g, "\n");
+        whitelist = whitelistObj.split("\n");
+      }
+
+      let postObj = {
+        callback: webhookUrl,
+        subscriptions: feeds,
+        blacklist: blacklist,
+        whitelist: whitelist,
+        format: "discord",
+        preview_length: previewLength
+      };
+
+      fetch(`https://api.dofusdu.de/webhooks/twitter`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(postObj)
+      }).then(function (response) {
+        switch (response.status) {
+          case 201:
+            document.getElementById('twitter-register-ok').classList.remove('d-none');
+            document.getElementById('twitter-already-registered').classList.add('d-none');
+            document.getElementById('twitter-not-exist').classList.add('d-none');
+            document.getElementById('twitter-register-error').classList.add('d-none');
+            document.getElementById('twitter-register-rate-limit').classList.add('d-none');
+            break;
+          case 409:
+            document.getElementById('twitter-register-ok').classList.add('d-none');
+            document.getElementById('twitter-already-registered').classList.remove('d-none');
+            document.getElementById('twitter-not-exist').classList.add('d-none');
+            document.getElementById('twitter-register-error').classList.add('d-none');
+            document.getElementById('twitter-register-rate-limit').classList.add('d-none');
+            break;
+          case 429:
+            document.getElementById('twitter-register-ok').classList.add('d-none');
+            document.getElementById('twitter-already-registered').classList.add('d-none');
+            document.getElementById('twitter-not-exist').classList.add('d-none');
+            document.getElementById('twitter-register-error').classList.add('d-none');
+            document.getElementById('twitter-register-rate-limit').classList.remove('d-none');
+            break;
+          default:
+            document.getElementById('twitter-register-ok').classList.add('d-none');
+            document.getElementById('twitter-already-registered').classList.add('d-none');
+            document.getElementById('twitter-not-exist').classList.add('d-none');
+            document.getElementById('twitter-register-error').classList.remove('d-none');
+            document.getElementById('twitter-register-rate-limit').classList.add('d-none');
+            break;
+        }
+      }).catch(function (error) {
+        document.getElementById('twitter-register-ok').classList.add('d-none');
+        document.getElementById('twitter-already-registered').classList.add('d-none');
+        document.getElementById('twitter-not-exist').classList.add('d-none');
+        document.getElementById('twitter-register-error').classList.remove('d-none');
+        document.getElementById('twitter-register-rate-limit').classList.add('d-none');
+      });
+
+      event.preventDefault();
+      event.stopPropagation();
+      return false;
+    })
+
+    // RSS
+    document.getElementById('rssRegisterBtn').addEventListener('click', function (event) {
+
+      let webhookUrl = String(document.getElementById('urlField').value);
+      let langs = getSelectValues(document.getElementById('rssLangSelect'));
+      if (langs.length == 0) {
+        alert("You need to select at least one language!");
+        event.preventDefault();
+        event.stopPropagation();
+        return false;
+      }
+      let game = String(document.getElementById('RssGameSelect').value).toLowerCase();
+      let feedNames = getSelectValues(document.getElementById('rssFeedSelect'));
+      if (feedNames.length == 0) {
+        alert("You need to select at least one feed!");
+        event.preventDefault();
+        event.stopPropagation();
+        return false;
+      }
+      let blacklistObj = String(document.getElementById('rssBlacklist').value);
+      let whitelistObj = String(document.getElementById('rssWhitelist').value);
+      let previewLength = parseInt(document.getElementById('rssPreviewLength').value);
+      if (previewLength > 4000) {
+        alert("Preview length must be less than 4000 characters!");
+        event.preventDefault();
+        event.stopPropagation();
+        return;
+      }
+
+      let feeds = [];
+      for (let i = 0; i < feedNames.length; i++) {
+        for (let j = 0; j < langs.length; j++) {
+          feeds.push(game + "-" + langs[j].toLowerCase() + "-official-" + feedNames[i].toLowerCase());
+        }
+      }
+
+      if (webhookUrl == "") {
+        alert("You need to specify a webhook url!");
+        event.preventDefault();
+        event.stopPropagation();
+        return false;
+      }
+
+      if (blacklistObj == "") {
+        blacklist = null;
+      } else {
+        blacklistObj = blacklistObj.replace(/\r\n/g, "\n");
+        blacklist = blacklistObj.split("\n");
+      }
+
+      if (whitelistObj == "") {
+        whitelist = null;
+      } else {
+        whitelistObj = whitelistObj.replace(/\r\n/g, "\n");
+        whitelist = whitelistObj.split("\n");
+      }
+
+      let postObj = {
+        callback: webhookUrl,
+        subscriptions: feeds,
+        blacklist: blacklist,
+        whitelist: whitelist,
+        format: "discord",
+        preview_length: previewLength
+      };
+
+      fetch(`https://api.dofusdu.de/webhooks/rss`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(postObj)
+      }).then(function (response) {
+        switch (response.status) {
+          case 201:
+            document.getElementById('rss-register-ok').classList.remove('d-none');
+            document.getElementById('rss-already-registered').classList.add('d-none');
+            document.getElementById('rss-not-exist').classList.add('d-none');
+            document.getElementById('rss-register-error').classList.add('d-none');
+            document.getElementById('rss-register-rate-limit').classList.add('d-none');
+            break;
+          case 409:
+            document.getElementById('rss-register-ok').classList.add('d-none');
+            document.getElementById('rss-already-registered').classList.remove('d-none');
+            document.getElementById('rss-not-exist').classList.add('d-none');
+            document.getElementById('rss-register-error').classList.add('d-none');
+            document.getElementById('rss-register-rate-limit').classList.add('d-none');
+            break;
+          case 429:
+            document.getElementById('rss-register-ok').classList.add('d-none');
+            document.getElementById('rss-already-registered').classList.add('d-none');
+            document.getElementById('rss-not-exist').classList.add('d-none');
+            document.getElementById('rss-register-error').classList.add('d-none');
+            document.getElementById('rss-register-rate-limit').classList.remove('d-none');
+            break;
+          default:
+            document.getElementById('rss-register-ok').classList.add('d-none');
+            document.getElementById('rss-already-registered').classList.add('d-none');
+            document.getElementById('rss-not-exist').classList.add('d-none');
+            document.getElementById('rss-register-error').classList.remove('d-none');
+            document.getElementById('rss-register-rate-limit').classList.add('d-none');
+            break;
+        }
+      }).catch(function (error) {
+        document.getElementById('rss-register-ok').classList.add('d-none');
+        document.getElementById('rss-already-registered').classList.add('d-none');
+        document.getElementById('rss-not-exist').classList.add('d-none');
+        document.getElementById('rss-register-error').classList.remove('d-none');
+        document.getElementById('rss-register-rate-limit').classList.add('d-none');
+      });
+
+      event.preventDefault();
+      event.stopPropagation();
+      return false;
+    })
+
+    // Almanax
+    document.getElementById('almRegisterBtn').addEventListener('click', function (event) {
+
+      let webhookUrl = String(document.getElementById('urlField').value);
+      let feeds = getSelectValues(document.getElementById('langSelect'));
+      if (feeds.length == 0) {
+        alert("You need to select at least one language!");
+        event.preventDefault();
+        event.stopPropagation();
+        return false;
+      }
+      let tz = String(document.getElementById('tzSelect').value);
+      let tzOffset = parseInt(document.getElementById('tzOffset').value);
+      let game = String(document.getElementById('almGameSelect').value).toLowerCase();
+      let blacklistObj = getSelectValues(document.getElementById('almBonusBlacklist'));
+      let whitelistObj = getSelectValues(document.getElementById('almBonusWhitelist'));
+      let isoDate = document.getElementById('almUseIsoDate').checked;
+
+      if (webhookUrl == "") {
+        alert("You need to specify a webhook url!");
+        event.preventDefault();
+        event.stopPropagation();
+        return false;
+      }
+
+      if (blacklistObj.length === 0) {
+        blacklist = null;
+      } else {
+        blacklist = blacklistObj;
+      }
+
+      if (whitelistObj.length === 0) {
+        whitelist = null;
+      } else {
+        whitelist = whitelistObj;
+      }
+
+      if (whitelist != null && blacklist != null) {
+        alert("You can't specify a whitelist and a blacklist at the same time!");
+        event.preventDefault();
+        event.stopPropagation();
+        return false;
+      }
+      let mentionsEnabled = !Boolean(document.getElementById('almMentions').classList.contains("d-none"));
+
+      let mentions = null;
+      if (mentionsEnabled) {
+        mentions = {};
+        const almMentions = document.getElementsByClassName('almMention');
+        for (let i = 0; i < almMentions.length; i++) {
+          const mention = almMentions[i];
+          let mentionId = parseInt(mention.getElementsByClassName('almMentionId')[i].value);
+          if (isNaN(mentionId)) {
+            alert("You need to specify a valid mention id!");
+            event.preventDefault();
+            event.stopPropagation();
+            return false;
+          }
+          let mentionBonus = mention.getElementsByClassName('almBonusId')[i].value;
+          let mentionisRole = mention.getElementsByClassName('almIsRole')[i].value === "role";
+          if (mentions[mentionBonus] === undefined) {
+            mentions[mentionBonus] = [];
+          }
+          mentions[mentionBonus].push({
+            discord_id: mentionId,
+            is_role: mentionisRole
+          });
+        }
+      }
+
+      let subs = [];
+      feeds.forEach(function (feed) {
+        subs.push(game + "_" + feed);
+      });
+
+      let postObj = {
+        callback: webhookUrl,
+        daily_settings: {
+          timezone: tz,
+          midnight_offset: tzOffset,
+        },
+        subscriptions: subs,
+        mentions: mentions,
+        bonus_blacklist: blacklist,
+        bonus_whitelist: whitelist,
+        iso_date: isoDate,
+        format: "discord"
+      };
+
+      fetch(`https://api.dofusdu.de/webhooks/almanax`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(postObj)
+      }).then(function (response) {
+        switch (response.status) {
+          case 201:
+            document.getElementById('alm-register-ok').classList.remove('d-none');
+            document.getElementById('alm-already-registered').classList.add('d-none');
+            document.getElementById('alm-not-exist').classList.add('d-none');
+            document.getElementById('alm-register-error').classList.add('d-none');
+            document.getElementById('alm-register-rate-limit').classList.add('d-none');
+            break;
+          case 409:
+            document.getElementById('alm-register-ok').classList.add('d-none');
+            document.getElementById('alm-already-registered').classList.remove('d-none');
+            document.getElementById('alm-not-exist').classList.add('d-none');
+            document.getElementById('alm-register-error').classList.add('d-none');
+            document.getElementById('alm-register-rate-limit').classList.add('d-none');
+            break;
+          case 429:
+            document.getElementById('alm-register-ok').classList.add('d-none');
+            document.getElementById('alm-already-registered').classList.add('d-none');
+            document.getElementById('alm-not-exist').classList.add('d-none');
+            document.getElementById('alm-register-error').classList.add('d-none');
+            document.getElementById('alm-register-rate-limit').classList.remove('d-none');
+            break;
+          default:
+            document.getElementById('alm-register-ok').classList.add('d-none');
+            document.getElementById('alm-already-registered').classList.add('d-none');
+            document.getElementById('alm-not-exist').classList.add('d-none');
+            document.getElementById('alm-register-error').classList.remove('d-none');
+            document.getElementById('alm-register-rate-limit').classList.add('d-none');
+            break;
+        }
+      }).catch(function (error) {
+        document.getElementById('alm-register-ok').classList.add('d-none');
+        document.getElementById('alm-already-registered').classList.add('d-none');
+        document.getElementById('alm-not-exist').classList.add('d-none');
+        document.getElementById('alm-register-error').classList.remove('d-none');
+      });
+
+      event.preventDefault();
+      event.stopPropagation();
+      return false;
+    })
+
+
+  </script>
+
+</body>
+
+</html>

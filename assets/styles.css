@@ -1,0 +1,348 @@
+body {
+  font-family: "Montserrat", sans-serif;
+  line-height: 32px;
+}
+
+.d-none {
+  display: none;
+}
+
+.required:after {
+  content: " *";
+  color: red;
+}
+
+.header-landing {
+  color: whitesmoke;
+  display: flex;
+  flex-direction: column;
+
+  justify-content: space-around;
+  background-image: linear-gradient(70deg, #032e66 0%, #c4abab 100%);
+  padding: 25px;
+}
+
+.big-dist {
+  margin-top: 80px !important;
+}
+
+#workflow,
+#copy-id-workflow {
+  border-radius: 15px;
+}
+
+#ui_prev_full {
+  width: 80%;
+  /*border-radius: 20px;*/
+}
+
+.linklist li {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 15px;
+}
+
+.workflow-wrap .workflow-video-wrap {
+  transition: filter 0.5s ease-in-out;
+  -webkit-filter: brightness(1) blur(0px); /* Ch 23+, Saf 6.0+, BB 10.0+ */
+  filter: brightness(1) blur(0px);
+  z-index: 0;
+}
+
+.workflow-wrap:hover .workflow-video-wrap {
+  -webkit-filter: brightness(0.8) blur(1px); /* Ch 23+, Saf 6.0+, BB 10.0+ */
+  filter: brightness(0.8) blur(1px);
+}
+
+.overlay-wrap {
+}
+
+.workflow-wrap:hover .overlay {
+  opacity: 1;
+}
+
+.workflow-wrap {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay a {
+}
+
+.overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  transition: 0.5s ease;
+}
+
+.button-wrap {
+  width: 300px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.app-link-btn {
+  outline: none;
+  border: none;
+  border: solid 1px transparent;
+}
+
+.app-link-btn:hover {
+  color: whitesmoke;
+  text-decoration: underline;
+  border: solid 1px transparent;
+}
+
+.starting-btn {
+  background-color: rgba(60, 11, 132, 0.62);
+  border: solid 1px #9560ca;
+}
+
+.starting-btn:hover {
+  background-color: rgba(70, 3, 102, 1);
+  transition: all 0.15s ease-in;
+  border: solid 1px #f9f9f9;
+  color: whitesmoke;
+}
+
+.starting-btn:focus {
+  box-shadow: 0 0 0 0.2rem rgba(255, 21, 251, 0.08);
+}
+
+.starting-btn:active:focus {
+  box-shadow: 0 0 0 0.2rem rgba(255, 21, 251, 0.08) !important;
+}
+
+table,
+th,
+td {
+  border: 1px solid grey;
+}
+
+.exc-cell {
+  position: relative;
+  font-family: "Calibri", sans-serif;
+  border: 2px solid #939393;
+  width: 100px;
+  padding-left: 5px;
+}
+
+.active-handle {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  bottom: -3px;
+  right: -3px;
+  background-color: #217346;
+  border-top: solid 1px #fff !important;
+  border-left: solid 1px #fff !important;
+  z-index: 16;
+  pointer-events: auto;
+}
+
+.exc-active {
+  border: 2px solid #217346;
+  z-index: 20;
+}
+
+ul {
+  padding-left: 15px;
+}
+
+.make-me-sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+
+  padding: 25px 0px;
+}
+
+.sidebar-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.step-pic {
+  padding: 10px;
+}
+
+#step1-pic {
+  width: 300px;
+}
+#step2-pic {
+  width: 500px;
+}
+#step3-pic {
+  width: 600px;
+}
+#step4-pic {
+  width: 650px;
+}
+
+@media (min-width: 768px) {
+  .header-landing {
+    padding-top: 100px;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 100px;
+    min-height: 30vh;
+  }
+
+  #workflow,
+  #copy-id-workflow {
+    width: 70%;
+  }
+}
+
+@media (max-width: 1000px) {
+  #step2-pic {
+    width: 600px;
+  }
+  #step3-pic {
+    width: 600px;
+  }
+  #step4-pic {
+    width: 600px;
+  }
+
+  #workflow,
+  #copy-id-workflow {
+    width: 90%;
+  }
+}
+
+@media (max-width: 768px) {
+  .guide-content {
+    margin-top: 250px;
+  }
+
+  #workflow,
+  #copy-id-workflow {
+    width: 100%;
+  }
+
+  .make-me-sticky {
+    position: inherit;
+    display: block;
+  }
+
+  .container-more {
+    display: none;
+  }
+
+  #step1-pic {
+    width: 350px;
+  }
+  #step2-pic {
+    width: 350px;
+  }
+  #step3-pic {
+    width: 350px;
+  }
+  #step4-pic {
+    width: 350px;
+  }
+}
+@media (max-width: 400px) {
+  .header-landing {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  .container-more {
+    display: none;
+  }
+}
+
+/* scroll indicator */
+.container-more {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  align-self: flex-end;
+}
+
+.chevron {
+  position: absolute;
+  width: 28px;
+  height: 8px;
+  opacity: 0;
+  transform: scale3d(0.5, 0.5, 0.5);
+  animation: move 3s ease-out infinite;
+}
+
+.chevron:first-child {
+  animation: move 3s ease-out 1s infinite;
+}
+
+.chevron:nth-child(2) {
+  animation: move 3s ease-out 2s infinite;
+}
+
+.chevron:before,
+.chevron:after {
+  content: " ";
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 51%;
+  background: #fff;
+}
+
+.chevron:before {
+  left: 0;
+  transform: skew(0deg, 30deg);
+}
+
+.chevron:after {
+  right: 0;
+  width: 50%;
+  transform: skew(0deg, -30deg);
+}
+
+@keyframes move {
+  25% {
+    opacity: 1;
+  }
+  33% {
+    opacity: 1;
+    transform: translateY(30px);
+  }
+  67% {
+    opacity: 1;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(55px) scale3d(0.5, 0.5, 0.5);
+  }
+}
+
+.text {
+  display: block;
+  margin-top: 75px;
+  color: #fff;
+  white-space: nowrap;
+  opacity: 1;
+}
+
+@keyframes pulse {
+  to {
+    opacity: 1;
+  }
+}
