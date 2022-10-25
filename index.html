@@ -892,8 +892,8 @@
         event.stopPropagation();
         return false;
       }
-      let blacklistObj = String(document.getElementById('twitterBlacklist'));
-      let whitelistObj = String(document.getElementById('twitterWhitelist'));
+      let blacklistObj = String(document.getElementById('twitterBlacklist').value);
+      let whitelistObj = String(document.getElementById('twitterWhitelist').value);
       let previewLength = parseInt(document.getElementById('twitterPreviewLength').value);
       if (previewLength > 280) {
         alert("Preview length must be less than 280 characters!");
