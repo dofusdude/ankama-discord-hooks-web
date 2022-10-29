@@ -534,6 +534,15 @@
                     </option>
                   </select>
                 </div>
+
+                <div class="form-group mt-2">
+                  <label for="almMentionPingDaysBefore-1">Prior notice</label>
+                  <input type="number" class="form-control col-md-4 col-sm-12 almPingDaysBefore"
+                    id="almMentionPingDaysBefore-1" placeholder="in days">
+                  <small id="almMentionPingDaysBeforeDesc-1" class="form-text text-muted">Get a mention up to 30 days in
+                    a previous daily message bonus. Multiple Discord IDs are allowed to make counting down days to a
+                    bonus possible.</small>
+                </div>
               </div>
             </div>
 
@@ -838,13 +847,15 @@
       var lastMentionNumber = lastMentionID.split("-")[1];
       var newMentionNumber = parseInt(lastMentionNumber) + 1;
       newMention.id = "almMention-" + newMentionNumber;
-      newMention.children[0].children[0].id = "almMentionBonusSelect-" + newMentionNumber;
-      newMention.children[0].children[0].name = "almMentionBonusSelect-" + newMentionNumber;
-      newMention.children[1].children[0].id = "almMentionID-" + newMentionNumber;
-      newMention.children[1].children[0].name = "almMentionID-" + newMentionNumber;
-      newMention.children[2].children[0].id = "almMentionIsRole-" + newMentionNumber;
-      newMention.children[2].children[0].name = "almMentionIsRole-" + newMentionNumber;
-      newMention.children[2].children[1].htmlFor = "almMentionIsRole-" + newMentionNumber;
+      newMention.children[0].children[0].htmlFor = "almMentionBonusSelect-" + newMentionNumber;
+      newMention.children[0].children[1].id = "almMentionBonusSelect-" + newMentionNumber;
+      newMention.children[1].children[0].htmlFor = "almMentionID-" + newMentionNumber;
+      newMention.children[1].children[1].id = "almMentionID-" + newMentionNumber;
+      newMention.children[2].children[0].htmlFor = "almMentionIsRole-" + newMentionNumber;
+      newMention.children[2].children[1].id = "almMentionIsRole-" + newMentionNumber;
+      newMention.children[3].children[0].htmlFor = "almMentionPingDaysBefore-" + newMentionNumber;
+      newMention.children[3].children[1].id = "almMentionPingDaysBefore-" + newMentionNumber;
+      newMention.children[3].children[2].id = "almMentionPingDaysBeforeDesc-" + newMentionNumber;
       document.getElementById("almMentions").appendChild(newMention);
     });
 
@@ -1153,12 +1164,30 @@
           }
           let mentionBonus = mention.getElementsByClassName('almBonusId')[i].value;
           let mentionisRole = mention.getElementsByClassName('almIsRole')[i].value === "role";
+          let mentionPrior = mention.getElementsByClassName('almBonusId')[i].value;
+          let mentionPriorNum = null;
+          if (mentionPrior != "") {
+            mentionPriorNum = parseInt(mentionPrior);
+            if (isNaN(mentionPriorNum)) {
+              alert("You need to specify a number of days!");
+              event.preventDefault();
+              event.stopPropagation();
+              return false;
+            }
+            if (mentionPriorNum < 1 || mentionPriorNum > 30) {
+              alert("You need to specify between 1 and 30 days!");
+              event.preventDefault();
+              event.stopPropagation();
+              return false;
+            }
+          }
           if (mentions[mentionBonus] === undefined) {
             mentions[mentionBonus] = [];
           }
           mentions[mentionBonus].push({
             discord_id: mentionId,
-            is_role: mentionisRole
+            is_role: mentionisRole,
+            ping_days_before: mentionPriorNum
           });
         }
       }
