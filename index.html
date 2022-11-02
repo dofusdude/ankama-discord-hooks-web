@@ -479,7 +479,7 @@
             <label for="almBonusBlacklist">Bonus Blacklist</label>
             <select class="form-control col-md-4 col-sm-12" id="almBonusBlacklist" placeholder="" multiple size="7">
             </select>
-            <small id="almBonusBlacklistDesc" class="form-text text-muted">Skip the day when this bonuses come
+            <small id="almBonusBlacklistDesc" class="form-text text-muted">Skip the day when these bonuses come
               up.</small>
           </div>
 
@@ -487,7 +487,7 @@
             <label for="almBonusWhitelist">Bonus Whitelist</label>
             <select class="form-control col-md-4 col-sm-12" id="almBonusWhitelist" placeholder="" multiple size="7">
             </select>
-            <small id="almBonusWhitelistDesc" class="form-text text-muted">Only post when this bonuses come up.</small>
+            <small id="almBonusWhitelistDesc" class="form-text text-muted">Only post when these bonuses come up.</small>
           </div>
 
           <div class="mt-5">
@@ -538,7 +538,7 @@
                   <label for="almMentionPingDaysBefore-1">Prior notice</label>
                   <input type="number" class="form-control col-md-4 col-sm-12 almPingDaysBefore"
                     id="almMentionPingDaysBefore-1" placeholder="in days">
-                  <small id="almMentionPingDaysBeforeDesc-1" class="form-text text-muted">Get a mention up to 30 days in
+                  <small id="almMentionPingDaysBeforeDesc-1" class="form-text text-muted">Get a mention up to 31 days in
                     a previous daily message bonus. Multiple Discord IDs are allowed to make counting down days to a
                     bonus possible.</small>
                 </div>
@@ -569,13 +569,13 @@
               <ul>
                 <li>Daily posts each day, filtering with
                   Black/Whitelist and mentions are applied daily.</li>
-                <li>Weekly posts the next 7 days (excluding the posting day) once per week at specified <a
+                <li>Weekly posts the next 7 days (excluding the posting day) once per week at the specified <a
                     href="#hour">time</a>. With only weekly selected, of all mentions, only prior notices will come
                   through daily. The 7 day preview gets filtered by the Black/Whitelist.
                 </li>
                 <li>Monthly posts a preview of the
                   next month from first to last date. The post will be on the last day of a month (ignoring day of the
-                  week) at specified <a href="#hour">time</a>.
+                  week) at the specified <a href="#hour">time</a>.
                   Mentions and filtering works like weekly.</li>
               </ul>
               The biggest difference between daily and the other two is that daily always posts the current day while
@@ -611,7 +611,8 @@
                 Sunday
               </option>
             </select>
-            <small id="almWeeklyWeekdayDesc" class="form-text text-muted d-none">When to post the preview at specified
+            <small id="almWeeklyWeekdayDesc" class="form-text text-muted d-none">When to post the preview at the
+              specified
               <a href="#hour">time</a>.</small>
           </div>
 
