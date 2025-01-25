@@ -41,8 +41,8 @@
 
     <div class="col-lg-12 text-center">
       <h1>Dofusdude for Discord</h1>
-      <p class="lead">Almanax | RSS | Twitter</p>
-      <p class="lead">fast and powerful Ankama feeds for your server</p>
+      <p class="lead">Almanax</p>
+      <p class="lead">fast and powerful Almanax feeds for your server</p>
     </div>
   </div>
   <div class="container-more container mt-5 button-wrap">
@@ -80,10 +80,11 @@
       <div class="nav nav-tabs" id="nav-tab" role="tablist">
         <button class="nav-link active" id="nav-almanax-tab" data-bs-toggle="tab" data-bs-target="#nav-almanax"
           type="button" role="tab" aria-controls="nav-almanax" aria-selected="true">Almanax</button>
-        <button class="nav-link" id="nav-rss-tab" data-bs-toggle="tab" data-bs-target="#nav-rss" type="button"
+        <!-- RSS and Twitter are currently disabled due to Elon Musk and Ankama deleting the Whitelist. -->
+        <!--<button class="nav-link" id="nav-rss-tab" data-bs-toggle="tab" data-bs-target="#nav-rss" type="button"
           role="tab" aria-controls="nav-rss" aria-selected="false">RSS</button>
         <button class="nav-link" id="nav-twitter-tab" data-bs-toggle="tab" data-bs-target="#nav-twitter" type="button"
-          role="tab" aria-controls="nav-twitter" aria-selected="false">Twitter</button>
+          role="tab" aria-controls="nav-twitter" aria-selected="false">Twitter</button>-->
       </div>
     </nav>
     <div class="tab-content" id="nav-tabContent">
@@ -94,9 +95,9 @@
             <label for="almGameSelect" class="required">Game</label>
             <select class="form-control col-md-4 col-sm-12" id="almGameSelect" aria-describedby="gameSelectDesc"
               placeholder="" required disabled>
-              <option value="dofus2">Dofus 2</option>
+              <option value="dofus2">Dofus 3</option>
             </select>
-            <small id="almGameSelectDesc" class="form-text text-muted">Currently only supporting Dofus 2.</small>
+            <small id="almGameSelectDesc" class="form-text text-muted">Currently only supporting Dofus 3.</small>
           </div>
 
           <div class="form-group mt-4">
@@ -650,9 +651,9 @@
             <label for="RssGameSelect" class="required">Game</label>
             <select class="form-control col-md-4 col-sm-12" id="RssGameSelect" aria-describedby="RssGameSelectDesc"
               placeholder="" required disabled>
-              <option value="dofus2">Dofus 2</option>
+              <option value="dofus2">Dofus 3</option>
             </select>
-            <small id="RssGameSelectDesc" class="form-text text-muted">Currently only supporting Dofus 2.</small>
+            <small id="RssGameSelectDesc" class="form-text text-muted">Currently only supporting Dofus 3.</small>
           </div>
 
           <div class="form-group mt-4">
@@ -888,7 +889,7 @@
       }
     });
 
-    fetch("https://api.dofusdu.de/dofus2/meta/en/almanax/bonuses").then(response => response.json()).then(data => {
+    fetch("https://api.dofusdu.de/dofus3/v1/meta/en/almanax/bonuses").then(response => response.json()).then(data => {
       for (let i = 0; i < data.length; i++) {
         const bonus = data[i];
         const bonusId = bonus.id;
