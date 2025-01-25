@@ -95,7 +95,7 @@
             <label for="almGameSelect" class="required">Game</label>
             <select class="form-control col-md-4 col-sm-12" id="almGameSelect" aria-describedby="gameSelectDesc"
               placeholder="" required disabled>
-              <option value="dofus2">Dofus 3</option>
+              <option value="dofus3">Dofus 3</option>
             </select>
             <small id="almGameSelectDesc" class="form-text text-muted">Currently only supporting Dofus 3.</small>
           </div>
@@ -651,7 +651,7 @@
             <label for="RssGameSelect" class="required">Game</label>
             <select class="form-control col-md-4 col-sm-12" id="RssGameSelect" aria-describedby="RssGameSelectDesc"
               placeholder="" required disabled>
-              <option value="dofus2">Dofus 3</option>
+              <option value="dofus3">Dofus 3</option>
             </select>
             <small id="RssGameSelectDesc" class="form-text text-muted">Currently only supporting Dofus 3.</small>
           </div>
@@ -1324,6 +1324,7 @@
         },
         body: JSON.stringify(postObj)
       }).then(function (response) {
+        console.log(response);
         switch (response.status) {
           case 201:
             document.getElementById('alm-register-ok').classList.remove('d-none');
