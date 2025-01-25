@@ -891,7 +891,9 @@
       }
     });
 
-    fetch("https://api.dofusdu.de/dofus3/v1/meta/en/almanax/bonuses").then(response => response.json()).then(data => {
+    fetch("https://api.dofusdu.de/dofus3/v1/meta/en/almanax/bonuses")
+    .then(response => response.json())
+    .then(data => {
       for (let i = 0; i < data.length; i++) {
         const bonus = data[i];
         const bonusId = bonus.id;
